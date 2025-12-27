@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
+import { API_ENDPOINTS } from "config/api";
 
 interface HistoryDealer {
 	name: string;
@@ -51,9 +52,9 @@ const ChatHistoryPanel = ({ open, onClose }: ChatHistoryPanelProps) => {
 
 				const token = await user.getIdToken();
 
-				const res = await fetch("http://localhost:4000/chat/history", {
-					method: "GET",
-					headers: {
+			const res = await fetch(API_ENDPOINTS.CHAT_HISTORY, {
+				method: "GET",
+				headers: {
 						Authorization: `Bearer ${token}`,
 					},
 				});

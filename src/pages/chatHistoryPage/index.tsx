@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 import type { Message, CarRecommendation } from "types";
 import { ChatHistoryModule } from "modules";
+import { API_ENDPOINTS } from "config/api";
 
 interface BackendDealer {
   name: string;
@@ -50,7 +51,7 @@ const ChatHistoryPage = () => {
 
         const token = await user.getIdToken();
 
-        const res = await fetch("http://localhost:4000/chat/history", {
+        const res = await fetch(API_ENDPOINTS.CHAT_HISTORY, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

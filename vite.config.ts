@@ -21,7 +21,17 @@ export default defineConfig({
 			constants: path.resolve(__dirname, "src/constants"),
 			modules: path.resolve(__dirname, "src/modules"), 
 			stores: path.resolve(__dirname, "src/stores"), 
+			config: path.resolve(__dirname, "src/config"),
 			"@": path.resolve(__dirname, "src"), 
+		},
+	},
+	server: {
+		proxy: {
+			"/api": {
+				target: "http://localhost:4000",
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/api/, ""),
+			},
 		},
 	},
 });
