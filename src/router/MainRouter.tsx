@@ -23,18 +23,21 @@ const MainRouter: React.FC = () => {
 						Element,
 						path,
 						caseSensitive,
-					
+						Layout,
 						isProtected,
 					} = item;
 
 					// Create the inner element
 					const inner = <Element />;
 
+					// Apply layout if provided
+					const withLayout = Layout ? <Layout>{inner}</Layout> : inner;
+
 					// Apply protection if needed
 					const guarded = isProtected ? (
-						<ProtectedRoute>{inner}</ProtectedRoute>
+						<ProtectedRoute>{withLayout}</ProtectedRoute>
 					) : (
-						inner
+						withLayout
 					);
 
 					// Wrap with error boundary

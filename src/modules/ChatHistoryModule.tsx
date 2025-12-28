@@ -13,8 +13,8 @@ const ChatHistoryModule = ({
 	error,
 }: ChatHistoryModuleProps) => {
 	return (
-		<div className="h-screen bg-gray-100 flex items-center justify-center">
-			<div className="w-full max-w-3xl h-[90vh] bg-white rounded-xl shadow flex flex-col">
+		<div className="bg-gray-100 flex items-center justify-center">
+			<div className="w-full max-w-3xl bg-white rounded-xl shadow flex flex-col">
 				<div className="p-4 border-b font-semibold">Chat history</div>
 
 				<div className="flex-1 p-4 overflow-y-auto">

@@ -16,13 +16,13 @@ const ErrorUI: React.FC<ErrorUIProps> = ({
 }) => {
 	return (
 		<>
-			<div className="w-full h-[95vh] flex flex-col items-center justify-center">
+			<div className="w-full flex flex-col items-center justify-center">
 				{/* {img} */}
-				<h1 className="text-vobb-primary-70 font-bold leading-8 text-4xl my-7">
+				<h1 className="text-blue-600 font-bold leading-8 text-4xl my-7">
 					{errorCode}
 				</h1>
 				<h2 className="font-semibold text-base mb-2">{title}</h2>
-				<div className="text-xs text-vobb-neutral-55 font-normal flex justify-center text-center">
+				<div className="text-xs text-gray-600 font-normal flex justify-center text-center">
 					<p className="w-[90%]">{message}</p>
 				</div>
 				<Button variant="fill" className="mt-7">

@@ -12,7 +12,7 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
 	if (loading) {
 		return (
-			<div className="h-screen flex items-center justify-center bg-gray-100">
+			<div className="flex items-center justify-center bg-gray-100">
 				<div className="text-gray-600">Checking authentication...</div>
 			</div>
 		);
