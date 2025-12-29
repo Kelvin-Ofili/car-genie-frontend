@@ -1,5 +1,5 @@
 import { useAuth } from "constants";
-import { PersonIcon, EnvelopeClosedIcon, CheckCircledIcon, CrossCircledIcon, CalendarIcon } from "@radix-ui/react-icons";
+import { EnvelopeClosedIcon, CheckCircledIcon, CrossCircledIcon, CalendarIcon } from "@radix-ui/react-icons";
 
 const ProfilePage = () => {
 	const { user } = useAuth();
