@@ -47,10 +47,23 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
 
             const data = await res.json();
 
+            // Generate unique IDs for messages
+            const userMsgId = `user-${Date.now()}`;
+            const assistantMsgId = `assistant-${Date.now()}`;
+
             setMessages((prev) => [
                 ...prev,
-                { role: "user", content: text },
-                { role: "assistant", ...data },
+                { 
+                    id: userMsgId,
+                    role: "user", 
+                    content: text 
+                },
+                { 
+                    id: assistantMsgId,
+                    role: "assistant", 
+                    content: data.reply || data.content || data.message || "",
+                    recommendations: data.recommendations || undefined
+                },
             ]);
         } catch (err) {
             console.error("Error sending message:", err);
