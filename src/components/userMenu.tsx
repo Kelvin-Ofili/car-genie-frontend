@@ -31,6 +31,11 @@ const UserMenu = () => {
 		navigate("/chat/history");
 	};
 
+	const handleProfile = () => {
+		setIsOpen(false);
+		navigate("/profile");
+	};
+
 	const handleLogout = () => {
 		setIsOpen(false);
 		logout();
@@ -48,6 +53,13 @@ const UserMenu = () => {
 
 			{isOpen && (
 				<div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+					<button
+						onClick={handleProfile}
+						className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center gap-2 transition-colors"
+					>
+						<PersonIcon className="w-4 h-4" />
+						Profile
+					</button>
 					<button
 						onClick={handleChatHistory}
 						className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center gap-2 transition-colors"

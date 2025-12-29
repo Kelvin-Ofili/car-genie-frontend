@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from "react";
 import type { PathRouteProps } from "react-router-dom";
 import { Routes } from "./routes";
-import { ChatPage, LoginPage, SignupPage, ChatHistoryPage } from "pages";
+import { ChatPage, LoginPage, SignupPage, ChatHistoryPage, ProfilePage } from "pages";
 import { AppLayout } from "layouts";
 
 // Route Builder Item Props
@@ -37,6 +36,12 @@ export const RouteBuilder: RouteBuilderItem[] = [
 	{
 		path: Routes.chatHistory,
 		Element: ChatHistoryPage,
+		isProtected: true,
+		Layout: AppLayout,
+	},
+	{
+		path: Routes.profile,
+		Element: ProfilePage,
 		isProtected: true,
 		Layout: AppLayout,
 	},

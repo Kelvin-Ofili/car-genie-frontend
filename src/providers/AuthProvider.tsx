@@ -19,7 +19,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			if (firebaseUser) {
 				const mappedUser: User = {
 					id: firebaseUser.uid,
+					email: firebaseUser.email,
+					emailVerified: firebaseUser.emailVerified,
 					isAnonymous: firebaseUser.isAnonymous ?? false,
+					createdAt: firebaseUser.metadata.creationTime ?? null,
+					lastLoginAt: firebaseUser.metadata.lastSignInTime ?? null,
 				};
 				setUser(mappedUser);
 			} else {

@@ -13,6 +13,7 @@ export const Routes = {
 	login: "/login",
 	signup: "/signup",
 	chatHistory: "/chat/history",
+	profile: "/profile",
 } as const;
 
 export type RouteKey = keyof typeof Routes;
