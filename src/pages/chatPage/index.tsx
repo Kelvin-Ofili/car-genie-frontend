@@ -1,6 +1,6 @@
 import { useChat } from "constants";
 import { useState } from "react";
-import { ChatModule } from "modules";
+import { ChatUI } from "modules";
 
 const ChatPage = () => {
 	const { messages, sendMessage, loading } = useChat();
@@ -13,7 +13,7 @@ const ChatPage = () => {
 	};
 
 	return (
-		<ChatModule
+		<ChatUI
 			messages={messages}
 			loading={loading}
 			input={input}

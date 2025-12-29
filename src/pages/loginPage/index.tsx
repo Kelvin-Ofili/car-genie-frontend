@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "constants/useAuth";
-import { LoginModule } from "modules";
+import { LoginUI } from "modules";
 
 interface LocationState {
 	from?: Location;
@@ -70,7 +70,7 @@ const LoginPage = () => {
 	};
 
 	return (
-		<LoginModule
+		<LoginUI
 			email={email}
 			password={password}
 			loading={loading}

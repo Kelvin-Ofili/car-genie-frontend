@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "constants/useAuth";
-import { SignupModule } from "modules";
+import { SignupUI } from "modules";
 
 const SignupPage = () => {
 	const { signup } = useAuth();
@@ -49,7 +49,7 @@ const SignupPage = () => {
 	};
 
 	return (
-		<SignupModule
+		<SignupUI
 			email={email}
 			password={password}
 			confirmPassword={confirmPassword}

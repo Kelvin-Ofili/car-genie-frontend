@@ -1,27 +1,35 @@
 import { Message } from "types";
 import { MessageBubble, RecommendationCard } from "components";
 
-interface ChatModuleProps {
+interface ChatHistoryUIProps {
 	messages: Message[];
 	loading: boolean;
-	input: string;
-	onInputChange: (value: string) => void;
-	onSend: () => void;
+	error: string | null;
 }
 
-const ChatModule = ({
+const ChatHistoryUI = ({
 	messages,
 	loading,
-	input,
-	onInputChange,
-	onSend,
-}: ChatModuleProps) => {
+	error,
+}: ChatHistoryUIProps) => {
 	return (
 		<div className="bg-gray-100 flex items-center justify-center">
 			<div className="w-full max-w-3xl bg-white rounded-xl shadow flex flex-col">
-				<div className="p-4 border-b font-semibold">Car Assistant</div>
+				<div className="p-4 border-b font-semibold">Chat history</div>
 
 				<div className="flex-1 p-4 overflow-y-auto">
+					{loading && (
+						<p className="text-sm text-gray-500">Loading history...</p>
+					)}
+
+					{!loading && error && (
+						<p className="text-sm text-red-600 mb-2">{error}</p>
+					)}
+
+					{!loading && !error && messages.length === 0 && (
+						<p className="text-sm text-gray-500">No history yet.</p>
+					)}
+
 					{messages.map((msg) => (
 						<div key={msg.id}>
 							<MessageBubble message={msg} />
@@ -35,24 +43,10 @@ const ChatModule = ({
 							)}
 						</div>
 					))}
-
-					{loading && <p className="text-sm text-gray-500">Typing…</p>}
-				</div>
-
-				<div className="p-4 border-t flex gap-2">
-					<input
-						value={input}
-						onChange={(e) => onInputChange(e.target.value)}
-						className="flex-1 border rounded px-3 py-2"
-						placeholder="Describe the car you want..."
-					/>
-					<button onClick={onSend} className="bg-black text-white px-4 rounded">
-						Send
-					</button>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export { ChatModule };
+export { ChatHistoryUI };

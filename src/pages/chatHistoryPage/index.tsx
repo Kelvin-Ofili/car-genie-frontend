@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 import type { Message, CarRecommendation } from "types";
-import { ChatHistoryModule } from "modules";
+import { ChatHistoryUI} from "modules";
 import { API_ENDPOINTS } from "config/api";
 
 interface BackendDealer {
@@ -117,7 +117,7 @@ const ChatHistoryPage = () => {
     void load();
   }, []);
 
-  return <ChatHistoryModule messages={messages} loading={loading} error={error} />;
+  return <ChatHistoryUI messages={messages} loading={loading} error={error} />;
 };
 
 export { ChatHistoryPage };

@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import { Link } from "react-router-dom";
 
-interface SignupModuleProps {
+interface SignupUIProps {
 	email: string;
 	password: string;
 	confirmPassword: string;
@@ -13,7 +13,7 @@ interface SignupModuleProps {
 	onSubmit: (e: FormEvent) => void;
 }
 
-const SignupModule = ({
+const SignupUI = ({
 	email,
 	password,
 	confirmPassword,
@@ -23,7 +23,7 @@ const SignupModule = ({
 	onPasswordChange,
 	onConfirmPasswordChange,
 	onSubmit,
-}: SignupModuleProps) => {
+}: SignupUIProps) => {
 	return (
 		<div className="h-screen bg-gray-100 flex items-center justify-center">
 			<div className="w-full max-w-md bg-white rounded-xl shadow p-8">
@@ -106,4 +106,4 @@ const SignupModule = ({
 	);
 };
 
-export { SignupModule };
+export { SignupUI };
