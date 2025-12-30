@@ -10,6 +10,18 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
 
     const sendMessage = async (text: string) => {
         setLoading(true);
+        
+        // Add user message immediately
+        const userMsgId = `user-${Date.now()}`;
+        setMessages((prev) => [
+            ...prev,
+            { 
+                id: userMsgId,
+                role: "user", 
+                content: text 
+            }
+        ]);
+
         try {
             const user = auth.currentUser;
             if (!user) {
@@ -47,17 +59,10 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
 
             const data = await res.json();
 
-            // Generate unique IDs for messages
-            const userMsgId = `user-${Date.now()}`;
+            // Add assistant response
             const assistantMsgId = `assistant-${Date.now()}`;
-
             setMessages((prev) => [
                 ...prev,
-                { 
-                    id: userMsgId,
-                    role: "user", 
-                    content: text 
-                },
                 { 
                     id: assistantMsgId,
                     role: "assistant", 

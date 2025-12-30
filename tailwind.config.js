@@ -1,8 +1,3 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-	theme: {
-		extend: {},
-	},
-	plugins: [],
-};
+// Tailwind CSS v4 uses @import "tailwindcss" in CSS
+// This file can be removed or kept minimal for IDE support
+export default {};

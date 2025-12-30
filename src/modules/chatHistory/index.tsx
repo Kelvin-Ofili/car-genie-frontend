@@ -1,5 +1,7 @@
 import { Message } from "types";
 import { MessageBubble, RecommendationCard } from "components";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 
 interface ChatHistoryUIProps {
 	messages: Message[];
@@ -12,10 +14,21 @@ const ChatHistoryUI = ({
 	loading,
 	error,
 }: ChatHistoryUIProps) => {
+	const navigate = useNavigate();
+
 	return (
-		<div className="bg-gray-100 flex items-center justify-center">
-			<div className="w-full max-w-3xl bg-white rounded-xl shadow flex flex-col">
-				<div className="p-4 border-b font-semibold">Chat history</div>
+		<div className="h-full bg-gradient-to-b from-blue-50 to-white flex flex-col p-4">
+			<div className="w-full max-w-3xl mx-auto bg-white rounded-xl shadow-lg flex flex-col h-full">
+				<div className="p-4 border-b flex items-center gap-3">
+					<button
+						onClick={() => navigate("/")}
+						className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
+					>
+						<ArrowLeftIcon className="w-5 h-5" />
+						<span className="text-sm font-medium">Back</span>
+					</button>
+					<span className="font-semibold text-lg">Chat History</span>
+				</div>
 
 				<div className="flex-1 p-4 overflow-y-auto">
 					{loading && (

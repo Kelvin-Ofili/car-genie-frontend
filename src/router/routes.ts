@@ -14,6 +14,7 @@ export const Routes = {
 	signup: "/signup",
 	chatHistory: "/chat/history",
 	profile: "/profile",
+	contactDealer: "/contact-dealer",
 } as const;
 
 export type RouteKey = keyof typeof Routes;

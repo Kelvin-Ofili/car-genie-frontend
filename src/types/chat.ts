@@ -6,6 +6,7 @@ export type CarRecommendation = {
 	price: string;
 	dealershipEmail: string;
 	description: string;
+	imageUrl?: string;
 };
 
 export type Message = {

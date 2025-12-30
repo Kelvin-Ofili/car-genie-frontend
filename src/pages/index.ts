@@ -3,4 +3,5 @@ export * from "./loginPage";
 export * from "./signupPage";
 export * from "./chatHistoryPage";
 export * from "./profilePage";
+export * from "./contactDealerPage";
 export * from "./error500";

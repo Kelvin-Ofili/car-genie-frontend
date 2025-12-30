@@ -1,7 +1,7 @@
 import type React from "react";
 import type { PathRouteProps } from "react-router-dom";
 import { Routes } from "./routes";
-import { ChatPage, LoginPage, SignupPage, ChatHistoryPage, ProfilePage } from "pages";
+import { ChatPage, LoginPage, SignupPage, ChatHistoryPage, ProfilePage, ContactDealerPage } from "pages";
 import { AppLayout } from "layouts";
 
 // Route Builder Item Props
@@ -42,6 +42,12 @@ export const RouteBuilder: RouteBuilderItem[] = [
 	{
 		path: Routes.profile,
 		Element: ProfilePage,
+		isProtected: true,
+		Layout: AppLayout,
+	},
+	{
+		path: Routes.contactDealer,
+		Element: ContactDealerPage,
 		isProtected: true,
 		Layout: AppLayout,
 	},

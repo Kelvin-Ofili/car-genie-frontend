@@ -1,8 +1,11 @@
 import { useAuth } from "constants";
 import { EnvelopeClosedIcon, CheckCircledIcon, CrossCircledIcon, CalendarIcon } from "@radix-ui/react-icons";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 
 const ProfilePage = () => {
 	const { user } = useAuth();
+	const navigate = useNavigate();
     console.log("User data:", user);
 
 	if (!user) {
@@ -30,7 +33,14 @@ const ProfilePage = () => {
 		<div className="h-full bg-gray-50 flex items-center justify-center p-4">
 			<div className="w-full max-w-2xl bg-white rounded-xl shadow-lg overflow-hidden">
 				{/* Header */}
-				<div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-12 text-white">
+				<div className="bg-linear-to-r from-blue-600 to-blue-700 px-8 py-12 text-white relative">
+					<button
+						onClick={() => navigate("/")}
+						className="absolute top-4 left-4 flex items-center gap-2 text-white hover:text-blue-100 transition-colors"
+					>
+						<ArrowLeftIcon className="w-5 h-5" />
+						<span className="text-sm font-medium">Back</span>
+					</button>
 					<div className="flex items-center gap-4">
 						<div>
 							<h1 className="text-3xl font-bold">Profile</h1>
