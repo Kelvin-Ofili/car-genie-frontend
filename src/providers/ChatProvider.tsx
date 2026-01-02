@@ -40,20 +40,27 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
                 body: JSON.stringify({ message: text }),
             });
 
+            console.log("Response status:", res.status);
+
             if (res.status === 429) {
                 alert("LLM quota exceeded, please try later.");
+                setLoading(false);
                 return;
             }
 
             if (res.status >= 500) {
-                alert("Something went wrong on the server. Please try again later.");
+                const errorDetails = await res.text().catch(() => "No error details");
+                console.error("Server error (500):", errorDetails);
+                alert(`Server error: ${errorDetails || "Please check backend logs"}`);
+                setLoading(false);
                 return;
             }
 
             if (!res.ok) {
                 const errorText = await res.text().catch(() => "Unknown error");
-                console.error("API Error:", errorText);
-                alert("Failed to send message. Please try again.");
+                console.error("API Error:", res.status, errorText);
+                alert(`Failed to send message (${res.status}): ${errorText}`);
+                setLoading(false);
                 return;
             }
 
