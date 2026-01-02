@@ -5,4 +5,6 @@ export type User = {
 	isAnonymous: boolean;
 	createdAt: string | null;
 	lastLoginAt: string | null;
+	displayName: string | null;
+	phoneNumber: string | null;
 };

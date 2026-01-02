@@ -7,7 +7,7 @@ export interface AuthContextValue {
 	login: (email: string, password: string) => Promise<void>;
 	logout: () => Promise<void>;
 	forgotPassword: (email: string) => Promise<void>;
-	signup: (email: string, password: string) => Promise<void>;
+	signup: (email: string, password: string, displayName: string, phoneNumber?: string) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextValue>({

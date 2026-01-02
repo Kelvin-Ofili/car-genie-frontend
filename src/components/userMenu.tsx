@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "constants";
-import { PersonIcon, ExitIcon } from "@radix-ui/react-icons";
+import { PersonIcon, ExitIcon, GearIcon } from "@radix-ui/react-icons";
 import { LogoutModal } from "./logoutModal";
 
 const UserMenu = () => {
@@ -36,6 +36,11 @@ const UserMenu = () => {
 	const handleProfile = () => {
 		setIsOpen(false);
 		navigate("/profile");
+	};
+
+	const handleSettings = () => {
+		setIsOpen(false);
+		navigate("/settings");
 	};
 
 	const handleLogout = () => {
@@ -90,6 +95,13 @@ const UserMenu = () => {
 								/>
 							</svg>
 							Chat History
+						</button>
+						<button
+							onClick={handleSettings}
+							className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center gap-2 transition-colors"
+						>
+							<GearIcon className="w-4 h-4" />
+							Settings
 						</button>
 						<div className="border-t border-gray-200 my-1" />
 						<button

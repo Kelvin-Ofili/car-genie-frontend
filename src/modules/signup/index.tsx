@@ -5,11 +5,15 @@ interface SignupUIProps {
 	email: string;
 	password: string;
 	confirmPassword: string;
+	displayName: string;
+	phoneNumber: string;
 	loading: boolean;
 	error: string | null;
 	onEmailChange: (value: string) => void;
 	onPasswordChange: (value: string) => void;
 	onConfirmPasswordChange: (value: string) => void;
+	onDisplayNameChange: (value: string) => void;
+	onPhoneNumberChange: (value: string) => void;
 	onSubmit: (e: FormEvent) => void;
 }
 
@@ -17,11 +21,15 @@ const SignupUI = ({
 	email,
 	password,
 	confirmPassword,
+	displayName,
+	phoneNumber,
 	loading,
 	error,
 	onEmailChange,
 	onPasswordChange,
 	onConfirmPasswordChange,
+	onDisplayNameChange,
+	onPhoneNumberChange,
 	onSubmit,
 }: SignupUIProps) => {
 	return (
@@ -39,6 +47,20 @@ const SignupUI = ({
 
 				<form onSubmit={onSubmit} className="space-y-4">
 					<div>
+						<label className="block text-sm font-medium mb-1" htmlFor="displayName">
+							Full Name
+						</label>
+						<input
+							id="displayName"
+							type="text"
+							value={displayName}
+							onChange={(e) => onDisplayNameChange(e.target.value)}
+							className="w-full border rounded px-3 py-2 text-sm"
+							placeholder="John Doe"
+						/>
+					</div>
+
+					<div>
 						<label className="block text-sm font-medium mb-1" htmlFor="email">
 							Email
 						</label>
@@ -50,6 +72,21 @@ const SignupUI = ({
 							className="w-full border rounded px-3 py-2 text-sm"
 							placeholder="you@example.com"
 						/>
+					</div>
+
+					<div>
+						<label className="block text-sm font-medium mb-1" htmlFor="phoneNumber">
+							Phone Number (optional)
+						</label>
+						<input
+							id="phoneNumber"
+							type="tel"
+							value={phoneNumber}
+							onChange={(e) => onPhoneNumberChange(e.target.value)}
+							className="w-full border rounded px-3 py-2 text-sm"
+							placeholder="+234 800 000 0000"
+						/>
+						<p className="text-xs text-gray-500 mt-1">Include country code (e.g., +234)</p>
 					</div>
 
 					<div>

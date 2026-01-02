@@ -5,3 +5,4 @@ export * from "./chatHistory";
 export * from "./errors";
 export * from "./profile";
 export * from "./contactDealer";
+export * from "./settings";

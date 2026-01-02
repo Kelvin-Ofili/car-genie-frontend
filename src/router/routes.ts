@@ -13,6 +13,7 @@ export const Routes = {
 	login: "/login",
 	signup: "/signup",
 	chatHistory: "/chat/history",
+	settings: "/settings",
 	profile: "/profile",
 	contactDealer: "/contact-dealer",
 } as const;
