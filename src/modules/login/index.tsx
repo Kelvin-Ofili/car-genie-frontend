@@ -25,7 +25,7 @@ const LoginUI = ({
     onForgotPassword,
 }: LoginUIProps) => {
     return (
-        <div className="bg-gray-100 flex items-center justify-center">
+        <div className="h-full bg-gray-100 flex items-center justify-center">
             <div className="w-full max-w-md bg-white rounded-xl shadow p-8">
                 <h1 className="text-2xl font-semibold mb-6 text-center">Sign in</h1>
 
