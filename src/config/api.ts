@@ -13,6 +13,7 @@ const API_BASE_URL = isDevelopment
 export const API_ENDPOINTS = {
 	CHAT: `${API_BASE_URL}/chat`,
 	CHAT_HISTORY: `${API_BASE_URL}/chat/history`,
+	CLEAR_CHAT_HISTORY: `${API_BASE_URL}/chat/history`,
 	SEND_EMAIL: `${API_BASE_URL}/send-email`,
 	UPDATE_PROFILE: `${API_BASE_URL}/update-profile`,
 } as const;
