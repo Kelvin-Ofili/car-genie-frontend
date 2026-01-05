@@ -2,6 +2,8 @@ import { FormEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "constants/useAuth";
 import { LoginUI } from "modules";
+import { auth } from "../../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 interface LocationState {
 	from?: Location;
@@ -32,6 +34,17 @@ const LoginPage = () => {
 		try {
 			setLoading(true);
 			await login(email, password);
+			
+			// Wait for Firebase auth state to actually update
+			await new Promise<void>((resolve) => {
+				const unsubscribe = onAuthStateChanged(auth, (user) => {
+					if (user) {
+						unsubscribe();
+						resolve();
+					}
+				});
+			});
+			
 			const redirectTo = state?.from?.pathname || "/";
 			navigate(redirectTo, { replace: true });
 		} catch (err) {
