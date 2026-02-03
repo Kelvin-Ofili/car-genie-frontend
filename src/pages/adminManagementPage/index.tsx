@@ -4,6 +4,7 @@ import {
 	checkAdminStatus,
 	revokeAdminRole,
 	listAdminUsers,
+	grantAdminRoleByEmail,
 } from "../../services/admin.service";
 import { useAuth } from "../../constants/useAuth";
 
@@ -68,38 +69,35 @@ export default function AdminManagementPage() {
 
 	// Grant admin role
 	async function handleGrantAdmin() {
+		console.log("1. handleGrantAdmin called");
+		
 		if (!newAdminEmail.trim()) {
 			setError("Email is required");
 			return;
 		}
 
+		console.log("2. Clearing errors and setting processing state");
 		setError(null);
 		setSuccess(null);
 		setProcessingUid("granting");
 
+		console.log("3. processingUid set to 'granting', button should show Granting...");
+
 		try {
-			// Add a small delay so the loading state is visible
-			await new Promise(resolve => setTimeout(resolve, 500));
+			console.log("4. Calling backend to grant admin role...");
+			await grantAdminRoleByEmail(newAdminEmail);
 			
-			// The backend will look up the user by email and grant admin role
-			// For now, we'll need to use the UID directly
-			// TODO: Add backend endpoint to grant by email
-			
-			// Simplified: directly call grantAdminRole with a placeholder
-			// In reality, you'd need a backend endpoint that accepts email
-			setError("Feature coming soon: Grant admin by email. Use the backend CLI script for now: npm run setup-admin <email>");
-			setProcessingUid(null);
-			return;
-			
-			// await grantAdminRole(userRecord.uid);
-			// setSuccess(`Admin role granted to ${newAdminEmail}`);
-			// setShowGrantModal(false);
-			// setNewAdminEmail("");
-			// await loadAdmins();
+			console.log("5. Admin role granted successfully");
+			setSuccess(`Admin role granted to ${newAdminEmail}`);
+			setShowGrantModal(false);
+			setNewAdminEmail("");
+			await loadAdmins();
 		} catch (err) {
+			console.error("6. Error granting admin role:", err);
 			setError(err instanceof Error ? err.message : "Failed to grant admin role");
 		} finally {
 			setProcessingUid(null);
+			console.log("7. processingUid cleared");
 		}
 	}
 
@@ -353,8 +351,14 @@ export default function AdminManagementPage() {
 							<button
 								onClick={handleGrantAdmin}
 								disabled={!newAdminEmail.trim() || processingUid !== null}
-								className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
+								className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
 							>
+								{processingUid && (
+									<svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+										<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+										<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+									</svg>
+								)}
 								{processingUid ? "Granting..." : "Grant Admin Role"}
 							</button>
 						</div>

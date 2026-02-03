@@ -172,6 +172,23 @@ export async function grantAdminRole(uid: string): Promise<void> {
 }
 
 /**
+ * Grant admin role to a user by email
+ */
+export async function grantAdminRoleByEmail(email: string): Promise<void> {
+	const headers = await getAuthHeader();
+	const response = await fetch(`${API_BASE_URL}/admin/grant-by-email`, {
+		method: "POST",
+		headers,
+		body: JSON.stringify({ email }),
+	});
+
+	if (!response.ok) {
+		const error = await response.json();
+		throw new Error(error.error || "Failed to grant admin role");
+	}
+}
+
+/**
  * Revoke admin role from a user
  */
 export async function revokeAdminRole(uid: string): Promise<void> {
