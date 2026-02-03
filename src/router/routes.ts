@@ -16,6 +16,9 @@ export const Routes = {
 	settings: "/settings",
 	profile: "/profile",
 	contactDealer: "/contact-dealer",
+	admin: "/admin",
+	adminManagement: "/admin/management",
+	dealerDashboard: "/dealer",
 } as const;
 
 export type RouteKey = keyof typeof Routes;

@@ -7,4 +7,6 @@ export type User = {
 	lastLoginAt: string | null;
 	displayName: string | null;
 	phoneNumber: string | null;
+	role?: "user" | "admin" | "dealer";
+	dealershipId?: string;
 };

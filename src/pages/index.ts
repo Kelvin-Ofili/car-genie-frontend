@@ -6,3 +6,6 @@ export * from "./profilePage";
 export * from "./contactDealerPage";
 export * from "./settingsPage";
 export * from "./error500";
+export { default as AdminPage } from "./adminPage";
+export { default as AdminManagementPage } from "./adminManagementPage";
+export { default as DealerDashboardPage } from "./dealerDashboardPage";
