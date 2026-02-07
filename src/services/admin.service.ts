@@ -3,7 +3,7 @@
  * API calls for admin functionality
  */
 
-import { API_BASE_URL } from "../config/api";
+import { API_ENDPOINTS } from "../config/api";
 import { auth } from "../firebase";
 
 export interface DealerApplication {
@@ -71,8 +71,8 @@ export async function getDealerApplications(
 ): Promise<DealerApplication[]> {
 	const headers = await getAuthHeader();
 	const url = status
-		? `${API_BASE_URL}/dealers/applications?status=${status}`
-		: `${API_BASE_URL}/dealers/applications`;
+		? `${API_ENDPOINTS.DEALER_APPLICATIONS}?status=${status}`
+		: API_ENDPOINTS.DEALER_APPLICATIONS;
 
 	const response = await fetch(url, { headers });
 
@@ -95,7 +95,7 @@ export async function approveDealerApplication(
 ): Promise<void> {
 	const headers = await getAuthHeader();
 	const response = await fetch(
-		`${API_BASE_URL}/dealers/applications/${applicationId}/approve`,
+		API_ENDPOINTS.DEALER_APPLICATION_APPROVE(applicationId),
 		{
 			method: "POST",
 			headers,
@@ -120,7 +120,7 @@ export async function rejectDealerApplication(
 ): Promise<void> {
 	const headers = await getAuthHeader();
 	const response = await fetch(
-		`${API_BASE_URL}/dealers/applications/${applicationId}/reject`,
+		API_ENDPOINTS.DEALER_APPLICATION_REJECT(applicationId),
 		{
 			method: "POST",
 			headers,
@@ -142,7 +142,7 @@ export async function rejectDealerApplication(
  */
 export async function getCurrentUserClaims(): Promise<Record<string, unknown>> {
 	const headers = await getAuthHeader();
-	const response = await fetch(`${API_BASE_URL}/admin/me/claims`, {
+	const response = await fetch(API_ENDPOINTS.ADMIN_ME_CLAIMS, {
 		headers,
 	});
 
@@ -159,7 +159,7 @@ export async function getCurrentUserClaims(): Promise<Record<string, unknown>> {
  */
 export async function grantAdminRole(uid: string): Promise<void> {
 	const headers = await getAuthHeader();
-	const response = await fetch(`${API_BASE_URL}/admin/grant`, {
+	const response = await fetch(API_ENDPOINTS.ADMIN_GRANT, {
 		method: "POST",
 		headers,
 		body: JSON.stringify({ uid }),
@@ -176,7 +176,7 @@ export async function grantAdminRole(uid: string): Promise<void> {
  */
 export async function grantAdminRoleByEmail(email: string): Promise<void> {
 	const headers = await getAuthHeader();
-	const response = await fetch(`${API_BASE_URL}/admin/grant-by-email`, {
+	const response = await fetch(API_ENDPOINTS.ADMIN_GRANT_BY_EMAIL, {
 		method: "POST",
 		headers,
 		body: JSON.stringify({ email }),
@@ -193,7 +193,7 @@ export async function grantAdminRoleByEmail(email: string): Promise<void> {
  */
 export async function revokeAdminRole(uid: string): Promise<void> {
 	const headers = await getAuthHeader();
-	const response = await fetch(`${API_BASE_URL}/admin/revoke`, {
+	const response = await fetch(API_ENDPOINTS.ADMIN_REVOKE, {
 		method: "POST",
 		headers,
 		body: JSON.stringify({ uid }),
@@ -210,7 +210,7 @@ export async function revokeAdminRole(uid: string): Promise<void> {
  */
 export async function listAdminUsers(): Promise<Array<{ uid: string; email: string | null; displayName: string | null; createdAt: string }>> {
 	const headers = await getAuthHeader();
-	const response = await fetch(`${API_BASE_URL}/admin/list`, {
+	const response = await fetch(API_ENDPOINTS.ADMIN_LIST, {
 		headers,
 	});
 

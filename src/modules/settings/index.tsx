@@ -1,6 +1,7 @@
 import { FormEvent } from "react";
 import { ArrowLeftIcon, PersonIcon, EnvelopeClosedIcon, MobileIcon } from "@radix-ui/react-icons";
 import { User } from "types";
+import { RoleBadge } from "components";
 
 interface SettingsUIProps {
 	user: User | null;
@@ -43,8 +44,13 @@ const SettingsUI = ({
 						<ArrowLeftIcon className="w-5 h-5" />
 						<span className="font-medium">Back</span>
 					</button>
-					<h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-					<p className="text-gray-600 mt-2">Manage your account information</p>
+					<div className="flex items-center justify-between">
+						<div>
+							<h1 className="text-3xl font-bold text-gray-900">Settings</h1>
+							<p className="text-gray-600 mt-2">Manage your account information</p>
+						</div>
+						<RoleBadge />
+					</div>
 				</div>
 
 				{/* Profile Info (Read-only) */}
